@@ -7,7 +7,7 @@
     in
     {
       packages.${system} = {
-        veyon = pkgs.callPackage ./veyon.nix { };
+        veyon = pkgs.callPackage ./veyon { };
       };
     };
 }

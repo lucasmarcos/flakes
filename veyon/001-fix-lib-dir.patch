@@ -1,0 +1,17 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 87ead3d..77d29d2 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -123,11 +123,7 @@ if(VEYON_BUILD_ANDROID)
+ 	set(VEYON_PLUGIN_DIR "")
+ 	set(VEYON_TRANSLATIONS_DIR "/translations")
+ else()
+-	if(CMAKE_INSTALL_LIBDIR)
+-		set(VEYON_LIB_DIR "${CMAKE_INSTALL_LIBDIR}/veyon" CACHE INTERNAL "Veyon library directory")
+-	else()
+-		set(VEYON_LIB_DIR lib/veyon CACHE INTERNAL "Veyon library directory")
+-	endif()
++	set(VEYON_LIB_DIR lib/veyon CACHE INTERNAL "Veyon library directory")
+ 
+ 	set(VEYON_INSTALL_PLUGIN_DIR "${VEYON_LIB_DIR}")
+ 	set(VEYON_INSTALL_DATA_DIR "${CMAKE_INSTALL_DATADIR}/veyon")
