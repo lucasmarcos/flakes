@@ -14,6 +14,8 @@
         build-alpine-rootfs = pkgs.callPackage ./alpine/build-alpine-rootfs.nix {
           apk-tools = self.outputs.packages.${system}.apk-tools-static-bin;
         };
+
+        build-archlinux-rootfs = pkgs.callPackage ./archlinux/build-archlinux-rootfs.nix {};
       };
     };
 }
