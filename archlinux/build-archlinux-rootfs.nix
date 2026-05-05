@@ -1,7 +1,13 @@
-{ lib, writeShellApplication, pacman, fakeroot, bubblewrap }:
+{
+  lib,
+  writeShellApplication,
+  pacman,
+  fakeroot,
+  bubblewrap,
+}:
 let
   mirror = "http://archlinux.c3sl.ufpr.br/\\$repo/os/\\$arch";
-  pacmanconf = lib.generators.toINI {} {
+  pacmanconf = lib.generators.toINI { } {
     options = {
       Architecture = "x86_64";
       SigLevel = "Never";
@@ -14,7 +20,7 @@ let
     };
   };
   enter = writeShellApplication {
-    name = "enter";    
+    name = "enter";
     runtimeInputs = [ bubblewrap ];
     text = ''
       ROOTFS="$(dirname "$(readlink -f "$0")")"
@@ -43,7 +49,10 @@ let
 in
 writeShellApplication {
   name = "build-archlinux-rootfs";
-  runtimeInputs = [ pacman fakeroot ];
+  runtimeInputs = [
+    pacman
+    fakeroot
+  ];
   text = ''
     ROOTFS="''${XDG_STATE_HOME:-$HOME/.local/state}/archlinux"
     mkdir -p "$ROOTFS/etc"
