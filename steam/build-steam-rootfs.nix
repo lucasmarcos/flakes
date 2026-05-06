@@ -75,7 +75,7 @@ writeShellApplication {
     ROOTFS="''${XDG_STATE_HOME:-$HOME/.local/state}/steam-archlinux-bwarp"
     mkdir -p "$ROOTFS/etc"
     mkdir -p "$ROOTFS/var/lib/pacman"
-    cp -f "${pacmanconf}" "$ROOTFS/etc/pacman.conf"
+    install -m 0644 "${pacmanconf}" "$ROOTFS/etc/pacman.conf"
     echo "nameserver 1.1.1.1" > "$ROOTFS/etc/resolv.conf"
 
     ${bubblewrap}/bin/bwrap \
@@ -157,7 +157,7 @@ writeShellApplication {
       --setenv PATH /usr/bin \
         locale-gen
 
-    cp -f "${enterAsSteam}" "$ROOTFS/enterAsSteam"
-    cp -f "${enterAsRoot}" "$ROOTFS/enterAsRoot"
+    install -m 0755 "${enterAsSteam}" "$ROOTFS/enterAsSteam"
+    install -m 0755 "${enterAsRoot}" "$ROOTFS/enterAsRoot"
   '';
 }
