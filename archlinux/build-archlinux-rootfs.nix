@@ -4,13 +4,15 @@
   pacman,
   fakeroot,
   bubblewrap,
+  stdenvNoCC,
+  fetchurl,
+  libarchive,
 }:
 let
   mirror = "http://archlinux.c3sl.ufpr.br/\\$repo/os/\\$arch";
   pacmanconf = lib.generators.toINI { } {
     options = {
       Architecture = "x86_64";
-      SigLevel = "Never";
     };
     core = {
       Server = mirror;
@@ -46,6 +48,20 @@ let
         bash
     '';
   };
+  archlinux-keys = stdenvNoCC.mkDerivation {
+    pname = "archlinux-keyring";
+    version = "20260420-1";
+    nativeBuildInputs = [ libarchive ];
+    unpackCmd = "bsdtar -x -f $src";
+    src = fetchurl {
+      url = "https://archlinux.c3sl.ufpr.br/core/os/x86_64/archlinux-keyring-20260420-1-any.pkg.tar.zst";
+      hash = "sha256-auVaB4uPXX88nGYczQUr0RS1L6A7jHyRpFP/KqqhhxY=";
+    };
+    postInstall = ''
+      mkdir -p $out
+      cp share/pacman/keyrings/* $out/
+    '';
+  };
 in
 writeShellApplication {
   name = "build-archlinux-rootfs";
@@ -59,6 +75,8 @@ writeShellApplication {
     mkdir -p "$ROOTFS/var/lib/pacman"
     echo "${pacmanconf}" > "$ROOTFS/etc/pacman.conf"
     echo "nameserver 1.1.1.1" > "$ROOTFS/etc/resolv.conf"
+    fakeroot pacman-key --populate-from "${archlinux-keys}" --config "$ROOTFS/etc/pacman.conf" --gpgdir "$ROOTFS/etc/pacman.d/gnupg" --init
+    fakeroot pacman-key --populate-from "${archlinux-keys}" --config "$ROOTFS/etc/pacman.conf" --gpgdir "$ROOTFS/etc/pacman.d/gnupg" --populate archlinux
     fakeroot pacman --sysroot "$ROOTFS" -Syu --needed base fakeroot
     cp -f "${enter}/bin/enter" "$ROOTFS/"
   '';
