@@ -10,9 +10,11 @@
         veyon = pkgs.callPackage ./veyon { };
 
         apk-tools-static-bin = pkgs.callPackage ./alpine/apk-tools-static-bin.nix { };
+        alpine-keys = pkgs.callPackage ./alpine/alpine-keys.nix { };
         busybox-static-bin = pkgs.callPackage ./alpine/busybox-static-bin.nix { };
         build-alpine-rootfs = pkgs.callPackage ./alpine/build-alpine-rootfs.nix {
           apk-tools = self.outputs.packages.${system}.apk-tools-static-bin;
+          alpine-keys = self.outputs.packages.${system}.alpine-keys;
         };
 
         build-archlinux-rootfs = pkgs.callPackage ./archlinux/build-archlinux-rootfs.nix { };
