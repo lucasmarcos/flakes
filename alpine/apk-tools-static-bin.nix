@@ -1,5 +1,5 @@
 {
-  stdenv,
+  stdenvNoCC,
   fetchurl,
   libarchive,
 }:
@@ -12,7 +12,7 @@ let
   rev = "r0";
   pname = "apk-tools-static";
 in
-stdenv.mkDerivation {
+stdenvNoCC.mkDerivation {
   inherit pname version;
 
   src = fetchurl {

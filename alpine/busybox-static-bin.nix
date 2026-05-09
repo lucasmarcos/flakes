@@ -1,8 +1,8 @@
-{ stdenv, fetchurl }:
+{ stdenvNoCC, fetchurl }:
 let
   version = "1.30.0";
 in
-stdenv.mkDerivation {
+stdenvNoCC.mkDerivation {
   pname = "apk-tools-static";
   inherit version;
 
