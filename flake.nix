@@ -19,6 +19,8 @@
 
         build-archlinux-rootfs = pkgs.callPackage ./archlinux/build-archlinux-rootfs.nix { };
         build-steam-rootfs = pkgs.callPackage ./steam/build-steam-rootfs.nix { };
+
+        lan-mouse-bin-fhs-env = pkgs.callPackage ./lan-mouse-bin/lan-mouse-bin-fhs-env.nix { };
       };
     };
 }
