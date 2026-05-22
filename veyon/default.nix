@@ -21,17 +21,17 @@
   qt5compat,
   qthttpserver,
   wrapQtAppsHook,
-  qca,
+  qt6Packages,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "veyon";
-  version = "4.10.2";
+  version = "4.10.3";
   src = fetchFromGitHub {
     owner = "veyon";
     repo = "veyon";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-kfPifOGXJxuZBEMtDXILfkvbmfEDl20pFgijFiZNZlA=";
+    hash = "sha256-nc30xn7nEkhM43BH81YBDcxehAZ7Ee+qgYJ6ogDAdRw=";
     fetchSubmodules = true;
   };
 
@@ -45,7 +45,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs = [
     qt5compat
-    qca
+    qt6Packages.qca
     lzo
     openldap
     cyrus_sasl

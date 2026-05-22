@@ -7,7 +7,7 @@
     in
     {
       packages.${system} = {
-        veyon = pkgs.callPackage ./veyon { };
+        veyon = pkgs.qt6.callPackage ./veyon { };
 
         apk-tools-static-bin = pkgs.callPackage ./alpine/apk-tools-static-bin.nix { };
         alpine-keys = pkgs.callPackage ./alpine/alpine-keys.nix { };
