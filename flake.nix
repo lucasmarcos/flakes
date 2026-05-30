@@ -24,8 +24,10 @@
 
         bun-bin-fhs-env = pkgs.buildFHSEnv {
           name = "bun-bin-fhs-env";
-          runScript = "bash";
+          runScript = "$HOME/.local/bin/bun";
         };
+
+        aspell-pt-br = pkgs.aspellWithDicts (d: [ d.pt_BR ]);
       };
     };
 }
