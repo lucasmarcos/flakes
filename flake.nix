@@ -21,6 +21,7 @@
         build-steam-rootfs = pkgs.callPackage ./steam/build-steam-rootfs.nix { };
 
         lan-mouse-bin-fhs-env = pkgs.callPackage ./lan-mouse-bin/lan-mouse-bin-fhs-env.nix { };
+        zen-bin-fhs-env = pkgs.callPackage ./zen-bin/zen-bin-fhs-env.nix { };
 
         bun-bin-fhs-env = pkgs.buildFHSEnv {
           name = "bun-bin-fhs-env";
