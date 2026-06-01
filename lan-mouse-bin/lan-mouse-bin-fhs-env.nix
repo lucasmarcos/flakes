@@ -1,6 +1,6 @@
 { buildFHSEnv }:
 buildFHSEnv {
-  name = "dhall-bin-fhs-env";
+  name = "lan-mouse-bin-fhs-env";
   targetPkgs =
     pkgs: with pkgs; [
       gtk4
