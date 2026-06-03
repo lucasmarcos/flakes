@@ -26,12 +26,12 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "veyon";
-  version = "4.10.3";
+  version = "4.10.4";
   src = fetchFromGitHub {
     owner = "veyon";
     repo = "veyon";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-nc30xn7nEkhM43BH81YBDcxehAZ7Ee+qgYJ6ogDAdRw=";
+    hash = "sha256-yCCBo7r0iih8a5T6MlRVUVczKWug35k+bA6nQCwTozk=";
     fetchSubmodules = true;
   };
 
