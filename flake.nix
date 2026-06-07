@@ -29,6 +29,18 @@
         };
 
         aspell-pt-br = pkgs.aspellWithDicts (d: [ d.pt_BR ]);
+        wine-bin-fhs-env = pkgs.callPackage ./wine-bin-fhs-env.nix { };
+
+        dhall-bin-fhs-env = pkgs.buildFHSEnv {
+          name = "dhall-bin-fhs-env";
+          targetPkgs =
+            pkgs: with pkgs; [
+              zlib
+              ncurses
+              gmp
+            ];
+          runScript = "bash";
+        };
       };
     };
 }
